@@ -13,7 +13,7 @@ xn = f(x0);
 apriori = int16(round(log(epsilon * (1 - alpha) / abs(x0 - xn)) / log(alpha)) + 1);;
 
 i = 0;
-while and(i < apriori, coef * abs(xn - x0) > eps) % апостериорная оценка
+while and(i < apriori, coef * abs(xn - x0) > epsilon) % апостериорная оценка
     x0 = xn;
     xn = f(x0);
     i = i + 1;
