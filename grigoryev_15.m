@@ -20,15 +20,15 @@ fprintf("alphaMax = %f, eps = %.e, apr = %d\n", alpha(a), eps, apriori);
 % итерации
 i = 0;
 while i < apriori
-    f0(t) = f;
-    f(t) = t + sin(f0(t) / pi)^2;
+    f0(t) = xn;
+    xn = f(f0);
     i = i + 1;
 end
 
 hold on;
 grid on;
 plot(a:b, f(a:b));
-title('Приближённое решение нелинейного уравнения в пространстве непрерывных функций C[-1.5;1.5]']);
+title('Приближённое решение нелинейного уравнения в пространстве непрерывных функций C[-1.5;1.5]');
 hold off;
 
 function max = maximum(x0, x1, a, b)
