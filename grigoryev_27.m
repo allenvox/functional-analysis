@@ -28,7 +28,7 @@ e3e3 = scalar_mult(e3, e3, a, b);
 c04 = scalar_mult(t^4, e0, a, b) / e0e0;
 c14 = scalar_mult(t^4, e1, a, b) / e1e1;
 c24 = scalar_mult(t^4, e2, a, b) / e2e2;
-c34 = scalar_mult(t^4, e2, a, b) / e3e3;
+c34 = scalar_mult(t^4, e3, a, b) / e3e3;
 e4 = t * t * t * t - c04 * e0 - c14 * e1 - c24 * e2 - c34 * e3;
 e4
 
