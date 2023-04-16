@@ -1,7 +1,8 @@
 % ПЗ 30, Григорьев Юрий
 clc;
-syms t; syms x1(t); syms x2(t); syms T1(t); syms T(t); syms Trig7(t); syms Leg7(t); syms Pk(t);
+syms t; syms x(t); syms x1(t); syms x2(t); syms T1(t); syms T(t); syms Trig7(t); syms Leg7(t); syms Pk(t);
 
+% A)
 x1(t) = t;
 x2(t) = t^2;
 
@@ -10,7 +11,7 @@ Trig7(t) = (scalar_mult(x1, T1, -1, 0) + scalar_mult(x2, T1, 0, 1))*T1;
 i = 1;
 while i < 7
     T(t) = i*pi*t;
-    a = scalar_mult(x1, sin(T), -1, 0) + scalar_mult(x2, sin(T), 0, 1);
+    a = scalar_mult(x1, cos(T), -1, 0) + scalar_mult(x2, cos(T), 0, 1);
     b = scalar_mult(x1, sin(T), -1, 0) + scalar_mult(x2, sin(T), 0, 1);
     Trig7 = Trig7 + a*cos(T) + b*sin(T);
     i = i + 1;
@@ -42,6 +43,48 @@ grid on;
 axis([-1 1 -2 2]);
 fplot(x1, [-1 0]);
 fplot(x2, [0 1]);
+fplot(Leg7, "--");
+hold off;
+
+
+% B)
+x(t) = log(1 - t^2);
+
+T1(t) = 1/sqrt(2);
+Trig7(t) = scalar_mult(x, T1, -1, 1)*T1;
+i = 1;
+while i < 7
+    T(t) = i*pi*t;
+    a = scalar_mult(x, cos(T), -1, 1);
+    b = scalar_mult(x, sin(T), -1, 1);
+    Trig7 = Trig7 + a*cos(T) + b*sin(T);
+    i = i + 1;
+end
+
+% вывод графика для тригонометрической аппроксимации
+figure
+hold on;
+grid on;
+axis([-1 1 -5 0.5]);
+fplot(x, "-");
+fplot(Trig7, "--");
+hold off;
+
+Leg7(t) = 0;
+i = 0;
+while i < 7
+    Pk(t) = t^i;
+    Leg7 = Leg7 + scalar_mult(x, Pk, -1, 1)*Pk;
+    i = i + 1;
+end
+Leg7 = Leg7 / sqrt(vpa(int(x1^2, t, -1, 0) +B int(x2^2, t, 0, 1), 5)); % ортонормализация многочлена Лежандра
+
+% вывод графика для аппроксимации многочленами Лежандра
+figure
+hold on;
+grid on;
+axis([-1 1 -5 0.5]);
+fplot(x, "-");
 fplot(Leg7, "--");
 hold off;
 
