@@ -21,7 +21,7 @@ figure
 hold on;
 grid on;
 title('Частичная сумма ряда Фурье');
-axis([-1.2 1.2 2.1 2.8]);
+axis([-1.2 1.2 0 2]);
 fplot(S10, "-");
 hold off;
 
